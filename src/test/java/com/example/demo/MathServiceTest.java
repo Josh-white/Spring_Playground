@@ -14,10 +14,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DoMaths.class)
+@WebMvcTest(MathService.class)
 
 
-public class DoMathsTest {
+public class MathServiceTest {
     @Autowired
     MockMvc mvc;
 
@@ -59,5 +59,14 @@ public class DoMathsTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("30 / 5 = 6"));
 
+    }
+
+    @Test
+    public void multiSum() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/sum?n=4&n=5&n=6");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("4 + 5 + 6 = 15"));
     }
 }
