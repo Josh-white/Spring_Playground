@@ -22,7 +22,7 @@ public class HomeControllerTest {
 
     @Test
     public void testHomePageEndpoint() throws Exception {
-        this.mvc.perform(get("/").accept(MediaType.TEXT_PLAIN))
+        this.mvc.perform(get("/test").accept(MediaType.TEXT_PLAIN))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello from Spring!"));
     }
